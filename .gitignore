@@ -1,0 +1,9 @@
+*.pyc
+__pycache__/
+.venv/
+*.xlsx
+*.csv
+.env
+data.json
+recipients.json
+test.py

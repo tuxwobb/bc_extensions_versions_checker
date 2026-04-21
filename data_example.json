@@ -1,0 +1,43 @@
+[
+    {
+        "country": "PL",
+        "environments": [
+            {"url": "PL_STG", "company": "XX", "type": "stage"},
+            {"url": "PL_PROD", "company": "YY", "type": "prod"}
+        ],
+        "extensions": [
+            {
+                "name": "Electronic Banking Base App",
+                "appsource": "https://marketplace.microsoft.com/en-us/product/PUBID.it_integro%7CAID.bc_eb-base_001%7CPAPPID.814e15ad-69eb-43cc-ac3f-4f0f3d10ff3c?tab=DetailsAndSupport"
+            },
+            {
+                "name": "Polish Language (Poland)",
+                "appsource": "https://marketplace.microsoft.com/en-us/product/PUBID.it_integro%7CAID.bc_pl_001%7CPAPPID.d7c152da-11ef-4e6b-9cc4-f40a870dbf12?tab=DetailsAndSupport"
+            },
+            {
+                "name": "Polish Localization",
+                "appsource": "https://marketplace.microsoft.com/en-us/product/PUBID.it_integro%7CAID.bc_pf-base_001%7CPAPPID.a41facb4-aa1f-4f4b-a6d5-a574d9a33911?tab=DetailsAndSupport"
+            },
+            {"name": "Custom_app_1"},
+            {"name": "Custom_app_2"}            
+        ]
+    },
+    {
+        "country": "RO",
+        "environments": [
+            {"url": "RO_STG", "company": "XX", "type": "stage"},
+            {"url": "RO_PROD", "company": "YY", "type": "prod"}
+        ],
+        "extensions": [
+            {"name": "COSMO Licensing"},
+            {"name": "COSMO Romanian Language Pack"},
+            {
+                "name": "COSMO Romanian Localization",
+                "appsource": "https://marketplace.microsoft.com/en-us/product/PUBID.cosmoconsultag%7CAID.romanian_localization%7CPAPPID.40e4bed3-2f08-4984-92df-292366ae4f79?tab=DetailsAndSupport"
+            },
+            {"name": "Custom_App_1"},
+            {"name": "Custom_App_2"}
+            
+        ]
+    }
+]
