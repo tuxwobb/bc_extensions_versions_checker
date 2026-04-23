@@ -17,7 +17,7 @@ A Python tool to audit and compare extension versions in Microsoft Business Cent
 
 ## Dependencies
 
-Install the required packages using pip:
+1. Install the required packages using pip:
 
 ```bash
 pip install -r requirements.txt
@@ -29,10 +29,30 @@ Required packages:
 - pandas
 - openpyxl
 
-Install Chromium headless
+2. Install Chromium headless
 
 ```bash
 playwright install chromium
+```
+
+3. Install Linux dependencies (Debian/Ubuntu)
+
+```bash
+sudo apt install -y \
+  libnss3 \
+  libatk1.0-0 \
+  libatk-bridge2.0-0 \
+  libcups2 \
+  libdrm2 \
+  libxkbcommon0 \
+  libxcomposite1 \
+  libxdamage1 \
+  libxrandr2 \
+  libgbm1 \
+  libasound2 \
+  libpangocairo-1.0-0 \
+  libpango-1.0-0 \
+  libgtk-3-0
 ```
 
 ## Configuration
@@ -67,10 +87,9 @@ Note: Use app-specific passwords for Gmail or similar services for security.
 
 ## Usage
 
-1. Activate your virtual environment:
-   ```bash
-   # On Windows
-   .venv\Scripts\activate
+1. Activate your virtual environment (Debian/Ubuntu):
+   ```bash   
+   source .venv/bin/activate
    ```
 
 2. Run the main script:
@@ -82,6 +101,7 @@ Note: Use app-specific passwords for Gmail or similar services for security.
    - Fetch versions from AppSource for configured extensions
    - Query Business Central APIs for installed extension versions
    - Export results to `extensions_versions.xlsx`
+   - Send email with results to recipients from `recipients.json`
 
 ## Output
 
@@ -100,10 +120,8 @@ This allows easy identification of version mismatches between environments.
 
 ## Troubleshooting
 
-- **Chrome Driver Issues**: webdriver_manager should handle driver updates automatically
 - **API Authentication Errors**: Verify credentials and Azure AD app registrations
 - **Web Scraping Failures**: AppSource page structure may change; update XPath selectors in `modules.py`
-- **Network Timeouts**: Increase WebDriverWait timeouts if needed
 
 ## Contributing
 
