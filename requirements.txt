@@ -1,6 +1,5 @@
 requests
-selenium
-webdriver_manager
 pandas
 openpyxl
 python-dotenv
+playwright

@@ -4,13 +4,7 @@ from email.message import EmailMessage
 
 import requests
 import pandas
-
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+from playwright.sync_api import sync_playwright, TimeoutError
 
 
 # class for calling Business Central web services
@@ -90,35 +84,29 @@ class BC_webservice:
         return {"value": [{"Name": "N/A", "Version": "N/A", "Is_Installed": False}]}
 
 
-# Get version from AppSource
-def get_app_version(url: str):
-    service = Service(ChromeDriverManager().install())
+def get_app_version(url: str) -> str:
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
 
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-
-    driver = webdriver.Chrome(service=service, options=options)
-    try:
-        driver.get(url)
-        wait = WebDriverWait(driver, 10)
-        version_label = wait.until(
-            EC.presence_of_element_located(
-                (
-                    By.XPATH,
-                    '//*[@id="pdpTabs"]/div[2]/div/div[1]/div/div[1]/div/div[3]/span',
-                )
+        try:
+            page.goto(url, timeout=10000)
+            version_element = page.wait_for_selector(
+                'xpath=//*[@id="pdpTabs"]/div[2]/div/div[1]/div/div[1]/div/div[3]/span',
+                timeout=10000,
             )
-        )
-        version_value = version_label.find_element(
-            By.XPATH,
-            '//*[@id="pdpTabs"]/div[2]/div/div[1]/div/div[1]/div/div[3]/span',
-        )
-        return version_value.text
-    except Exception as e:
-        print(f"Error occurred while fetching version: {e}")
-        return "Error"
-    finally:
-        driver.quit()
+            return version_element.inner_text().strip()
+
+        except TimeoutError:
+            print("Timeout: version not found")
+            return "Error"
+
+        except Exception as e:
+            print(f"Error occurred while fetching version: {e}")
+            return "Error"
+
+        finally:
+            browser.close()
 
 
 # Export results to excel

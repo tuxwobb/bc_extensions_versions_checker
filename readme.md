@@ -13,7 +13,6 @@ A Python tool to audit and compare extension versions in Microsoft Business Cent
 ## Requirements
 
 - Python 3.8+
-- Chrome browser (for Selenium web scraping)
 - Microsoft Business Central API access with proper credentials
 
 ## Dependencies
@@ -26,10 +25,15 @@ pip install -r requirements.txt
 
 Required packages:
 - requests
-- selenium
-- webdriver_manager
+- playwright
 - pandas
 - openpyxl
+
+Install Chromium headless
+
+```bash
+playwright install chromium
+```
 
 ## Configuration
 
